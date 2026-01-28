@@ -1,0 +1,83 @@
+                    <!-- Video Card 1 -->
+                    <div class="portfolio-card video-card" data-video-id="L9NYz6X9x6w" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/L9NYz6X9x6w/maxresdefault.jpg" alt="Video 1" loading="lazy">
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Play video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 2 -->
+                    <div class="portfolio-card video-card" data-video-id="yc00mSqS4WQ" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/yc00mSqS4WQ/maxresdefault.jpg" alt="Video 2" loading="lazy">
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Play video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 3 -->
+                    <div class="portfolio-card video-card" data-video-id="krmrrm_6Xxw" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/krmrrm_6Xxw/maxresdefault.jpg" alt="Video 3" loading="lazy">
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Play video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 4 -->
+                    <div class="portfolio-card video-card" data-video-id="cKyH-IUkLwM" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/cKyH-IUkLwM/maxresdefault.jpg" alt="Video 4" loading="lazy">
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Play video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 5 -->
+                    <div class="portfolio-card video-card" data-video-id="dh_3laUsBiU" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/dh_3laUsBiU/maxresdefault.jpg" alt="Video 5" loading="lazy">
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Play video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 6 -->
+                    <div class="portfolio-card video-card" data-video-id="EkltWPdWcVM" data-type="youtube">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/EkltWPdWcVM/maxresdefault.jpg" alt="Video 6" loading="lazy">
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Play video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,56 @@
+/* ==========================================
+   PORTFOLIO CARDS STYLING
+   Modern card design with gradient headers and icons
+   ========================================== */
+
+.portfolio-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .portfolio-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .portfolio-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* Portfolio Card - Reel Style */
+/* Portfolio Card - transparent wrapper */
+.portfolio-card {
+    position: relative;
+    background: transparent;
+    /* Removed overflow/border-radius from wrapper to allow title flow */
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-title {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--c-content);
+    font-family: inherit;
+    letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+    .video-title {
+        font-size: 1rem;
+        margin-top: 12px;
+    }
+}

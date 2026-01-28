@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Clipo Media - Creative production studio specializing in brand films, digital campaigns, and cinematic storytelling. Transform your digital presence with premium visual content.">
+    <meta name="theme-color" content="#dc2743">
+    <title>Clipo Media - Next Generation Experience</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/wheels.png">
+
+    <!-- DNS Prefetch & Preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Optimized Local Font Preloads - Only critical weights -->
+    <link rel="preload" href="qurovafont/webfonts/Qurova-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="qurovafont/webfonts/Qurova-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Preload critical background images -->
+    <link rel="preload" href="images/instagram-light-bg.png" as="image" type="image/png">
+    <link rel="preload" href="images/instagram-dark-bg.png" as="image" type="image/png">
+
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/portfolio-cards.css">
+    <link rel="stylesheet" href="css/video-thumbnails.css">
+</head>
+
+<body>
+    <fieldset class="switcher">
+        <legend class="switcher__legend">Navigation</legend>
+        <label class="switcher__option">
+            <input class="switcher__input" type="radio" name="nav" value="home" c-option="1" checked />
+            <div class="switcher__content">
+                <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                <span class="switcher__text">Home</span>
+            </div>
+        </label>
+        <label class="switcher__option">
+            <input class="switcher__input" type="radio" name="nav" value="about" c-option="2" />
+            <div class="switcher__content">
+                <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4" />
+                    <path d="M12 8h.01" />
+                </svg>
+                <span class="switcher__text">About</span>
+            </div>
+        </label>
+        <label class="switcher__option">
+            <input class="switcher__input" type="radio" name="nav" value="services" c-option="3" />
+            <div class="switcher__content">
+                <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect width="7" height="7" x="3" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="14" rx="1" />
+                    <rect width="7" height="7" x="3" y="14" rx="1" />
+                </svg>
+                <span class="switcher__text">Services</span>
+            </div>
+        </label>
+        <label class="switcher__option">
+            <input class="switcher__input" type="radio" name="nav" value="pricing" c-option="4" />
+            <div class="switcher__content">
+                <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polygon points="23 7 16 12 23 17 23 7" />
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                </svg>
+                <span class="switcher__text">Pricing</span>
+            </div>
+        </label>
+        <label class="switcher__option">
+            <input class="switcher__input" type="radio" name="nav" value="clients" c-option="5" />
+            <div class="switcher__content">
+                <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+                    <path d="M7 7h.01" />
+                </svg>
+                <span class="switcher__text">Portfolio</span>
+            </div>
+        </label>
+        <label class="switcher__option">
+            <input class="switcher__input" type="radio" name="nav" value="contact" c-option="6" />
+            <div class="switcher__content">
+                <svg class="switcher__icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+                <span class="switcher__text">Contact</span>
+            </div>
+        </label>
+        <div class="switcher__bubble"></div>
+    </fieldset>
+
+    <!-- Hidden theme switcher -->
+    <input type="radio" name="theme" value="light" id="theme-light" class="theme-radio" hidden>
+    <input type="radio" name="theme" value="dark" id="theme-dark" class="theme-radio" checked hidden>
+
+    <div class="background-container">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="glass-overlay"></div>
+    </div>
+
+    <div class="section-wrapper">
+        <nav class="navbar">
+            <a href="index.html" class="navbar__logo-link">
+                <img class="navbar__logo navbar__logo--light" src="./images/Clipo Logo_Black.webp" alt="Clipo Logo"
+                    loading="eager">
+                <img class="navbar__logo navbar__logo--dark" src="./images/Clipo Logo_White.webp" alt="Clipo Logo"
+                    loading="eager">
+            </a>
+        </nav>
+        <div class="navbar__actions">
+            <!-- Premium Neumorphic Pill Toggle -->
+            <button class="theme-pill" id="themePill" aria-label="Toggle theme">
+                <div class="theme-pill__track">
+                    <div class="theme-pill__thumb">
+                        <!-- Icons are on the thumb for a modern look -->
+                        <div class="theme-pill__icon theme-pill__icon--sun">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                        </div>
+                        <div class="theme-pill__icon theme-pill__icon--moon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- Reference Icons in track -->
+                    <div class="theme-pill__track-icons">
+                        <svg class="track-icon track-icon--sun" xmlns="http://www.w3.org/2000/svg" width="14"
+                            height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                        </svg>
+                        <svg class="track-icon track-icon--moon" xmlns="http://www.w3.org/2000/svg" width="12"
+                            height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </button>
+        </div>
+
+        <header>
+
+        </header>
+    </div>
+
+    <div class="section-wrapper">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero__content">
+                <div class="hero__badge">
+                    <span class="hero__badge-dot"></span>
+                    CREATIVE STORYTELLING • CINEMATIC PRODUCTION
+                </div>
+                <h1 class="hero__title">
+                    Crafting Stories<br>
+                    That Move<br>
+                    <span class="hero__title-gradient">Brands</span>
+                </h1>
+                <p class="hero__description">
+                    Clipo Media is a creative production studio based in Hyderabad, helping brands stand out in a
+                    crowded digital world. We create powerful visual stories and strategic campaigns that don't just
+                    reach people; they engage, inspire, and convert.
+                </p>
+                <div class="hero__buttons">
+                    <a href="#contact" class="hero__btn hero__btn--primary" style="text-decoration: none;">Get
+                        Started</a>
+                    <a href="#services" class="hero__btn hero__btn--secondary" style="text-decoration: none;">Our
+                        Services &rarr;</a>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <div class="hero__device">
+                    <div class="hero__device-screen">
+                        <video id="hero-video" src="images/Clipo Ad Video -1.mp4" class="hero__device-image" muted
+                            playsinline preload="auto" controlsList="nodownload"></video>
+                        <button class="hero__play-btn" aria-label="Watch Video">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-wrapper">
+        <!-- About Section -->
+        <section class="section about" id="about">
+            <div class="glass-card about__card">
+                <h2 class="section__title">Your Strategic<br><span class="text-gradient">Creative Partner</span></h2>
+                <p class="section__desc">
+                    At Clipo Media, we are more than a production house — we are your strategic creative partner.
+                    For over <span class="number-text">8</span> years, we have partnered with brands across real estate,
+                    F&B, FMCG, retail, events,
+                    and corporate sectors, turning marketing challenges into impactful campaigns that deliver real ROI.
+                </p>
+                <div class="about__visions">
+                    <div class="glass-card vision-card">
+                        <div class="vision-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To be the driving force behind brands that shape culture, creating visual narratives that
+                            resonate globally and stand the test of time.</p>
+                    </div>
+                    <div class="glass-card vision-card">
+                        <div class="vision-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                            </svg>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To empower businesses with cinematic storytelling and data-driven strategies, turning complex
+                            challenges into simple, compelling, and profitable realities.</p>
+                    </div>
+                </div>
+                <div class="about__stats">
+                    <div class="stat">
+                        <span class="stat__number">8+</span>
+                        <span class="stat__label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number">100+</span>
+                        <span class="stat__label">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number">50+</span>
+                        <span class="stat__label">Clients</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-wrapper">
+        <!-- Services Section -->
+        <section class="section services" id="services">
+            <div class="section__header">
+                <h2 class="section__title">Our Services</h2>
+                <p class="section__subtitle">A complete brand-building ecosystem.</p>
+            </div>
+            <div class="services__grid">
+                <div class="glass-card service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="23 7 16 12 23 17 23 7" />
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                        </svg>
+                    </div>
+                    <h3>Video & Ad Production</h3>
+                    <p>Brand films, corporate videos, product shoots, reels & social videos, and theatre ads. We make
+                        stories move.</p>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">
+                        <img src="images/digital-campaign-logo.png" alt="Digital Campaigns Logo">
+                    </div>
+                    <h3>Digital Campaigns</h3>
+                    <p>Meta & Google ads, social media strategy, audience targeting, and lead generation. Results-driven
+                        marketing.</p>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+                            <path d="M9 18h6" />
+                            <path d="M10 22h4" />
+                        </svg>
+                    </div>
+                    <h3>Creative Strategy</h3>
+                    <p>Concept development, scriptwriting, storyboarding, and campaign planning. The foundation of
+                        powerful communication.</p>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                    </div>
+                    <h3>Offline Promotions</h3>
+                    <p>Events & brand activations, hoardings, and print collateral. Making your brand visible in the
+                        real world.</p>
+                </div>
+                <div class="glass-card service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h3>Event & Studio Production</h3>
+                    <p>Multi-camera shoots, podcasts, product launches, and live coverage. Capturing moments that
+                        matter.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-wrapper">
+        <!-- Pricing Section -->
+        <section class="section pricing" id="pricing">
+            <div class="section__header">
+                <h2 class="section__title">iPhone Package</h2>
+                <p class="section__subtitle">Quick, stylish reels shot on iPhone.</p>
+            </div>
+            <div class="pricing__grid">
+                <div class="glass-card pricing-card iphone-card">
+                    <div class="price">
+                        <span class="currency">₹</span>11,999
+                    </div>
+                    <div class="pricing-divider"></div>
+                    <ul class="features">
+                        <li>Shot On IPhone</li>
+                        <li><span class="number-text">3</span> Reels <span class="feature-note">(up to <span
+                                    class="number-text">60</span> secs each)</span></li>
+                        <li>Same Day Delivery</li>
+                        <li>Single Person Shoot</li>
+                        <li>Flexible scheduling</li>
+                    </ul>
+                </div>
+                <div class="glass-card pricing-card iphone-card">
+                    <div class="price">
+                        <span class="currency">₹</span>23,999
+                    </div>
+                    <div class="pricing-divider"></div>
+                    <ul class="features">
+                        <li>Shot On iPhone</li>
+                        <li><span class="number-text">6</span> Reels <span class="feature-note">(up to <span
+                                    class="number-text">60</span> secs each)</span></li>
+                        <li>Same Day Delivery</li>
+                        <li>Single Person Shoot</li>
+                        <li>Flexible scheduling</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section__header">
+                <h2 class="section__title">Camera Package</h2>
+                <p class="section__subtitle">Professional cinematic reels shot on high-end cameras.</p>
+            </div>
+            <div class="pricing__grid">
+                <div class="glass-card pricing-card iphone-card">
+                    <div class="price">
+                        <span class="currency">₹</span>23,999
+                    </div>
+                    <div class="pricing-divider"></div>
+                    <ul class="features">
+                        <li>Shot On Mirrorless Camera</li>
+                        <li><span class="number-text">3</span> Reels <span class="feature-note">(up to <span
+                                    class="number-text">60</span> secs each)</span></li>
+                        <li>Advanced color grading</li>
+                        <li>Premium Editing</li>
+                        <li>Dedicated creative director assistance</li>
+                    </ul>
+                </div>
+                <div class="glass-card pricing-card iphone-card">
+                    <div class="price">
+                        <span class="currency">₹</span>39,999
+                    </div>
+                    <div class="pricing-divider"></div>
+                    <ul class="features">
+                        <li>Shot On Mirrorless Camera</li>
+                        <li><span class="number-text">6</span> Reels <span class="feature-note">(up to <span
+                                    class="number-text">60</span> secs each)</span></li>
+                        <li>Advanced color grading</li>
+                        <li>Premium Editing</li>
+                        <li>Dedicated creative director assistance</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+
+    <!-- OUR WORK SECTION -->
+    <div class="section-wrapper">
+        <section class="section ourwork-showcase" id="clients">
+            <!-- Main Section Header -->
+            <div class="ourwork-hero">
+                <h1 class="ourwork-hero__title">Visual <span class="text-gradient">Masterpieces</span></h1>
+                <p class="ourwork-hero__description">
+                    Explore Clipo Media's elite portfolio of cinematic brand films and digital masterpieces.
+                    From luxury real estate tours to high-energy corporate campaigns, we define the next
+                    generation of visual storytelling.
+                </p>
+
+                <!-- Feature Bullets -->
+                <div class="ourwork-features">
+                    <div class="feature-item">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
+
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
+
+                    </div>
+                    <div class="feature-item">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content Area -->
+            <div class="video-showcase-slider-wrapper">
+                <button class="showcase-nav-btn prev" aria-label="Previous Video">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <!-- Video Grid -->
+                <div class="video-showcase-grid">
+                    <!-- Video 1 -->
+                    <div class="video-card">
+                        <div class="hero__device showcase-device" style="aspect-ratio: 9/16; max-width: 100%;">
+                            <div class="hero__device-screen">
+                                <video src="images/Chiguru%20Reel%20_1.mp4#t=1"
+                                    class="hero__device-image showcase-video" muted playsinline preload="metadata"
+                                    loop></video>
+                                <button class="hero__play-btn showcase-play-btn" aria-label="Watch Video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card">
+                        <div class="hero__device showcase-device" style="aspect-ratio: 9/16; max-width: 100%;">
+                            <div class="hero__device-screen">
+                                <video src="images/TABARNA%20CHITRAPURI%20TALKIES%20-4.mp4#t=4"
+                                    class="hero__device-image showcase-video" muted playsinline preload="metadata"
+                                    loop></video>
+                                <button class="hero__play-btn showcase-play-btn" aria-label="Watch Video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card">
+                        <div class="hero__device showcase-device" style="aspect-ratio: 9/16; max-width: 100%;">
+                            <div class="hero__device-screen">
+                                <video src="images/TABERNA.mp4#t=3" class="hero__device-image showcase-video" muted
+                                    playsinline preload="metadata" loop></video>
+                                <button class="hero__play-btn showcase-play-btn" aria-label="Watch Video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 4 -->
+                    <div class="video-card">
+                        <div class="hero__device showcase-device" style="aspect-ratio: 9/16; max-width: 100%;">
+                            <div class="hero__device-screen">
+                                <video src="images/Chiguru%20Relaunch%20Reel%20%20(2).mp4#t=2"
+                                    class="hero__device-image showcase-video" muted playsinline preload="metadata"
+                                    loop></video>
+                                <button class="hero__play-btn showcase-play-btn" aria-label="Watch Video">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="showcase-nav-btn next" aria-label="Next Video">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+    </div>
+    </section>
+    </div>
+
+    <!-- OUR CLIENTS GRID -->
+    <div class="section-wrapper">
+        <section class="section our-clients" id="our-clients">
+            <div class="section__header">
+                <h2 class="section__title">Our <span class="text-gradient">Clients</span></h2>
+                <p class="section__subtitle">Trusted by industry leaders and innovative brands worldwide.</p>
+            </div>
+
+            <div class="clients-container">
+                <!-- Row 1: Left to Right (8 cards) -->
+                <div class="clients-track row-1">
+                    <div class="track-content">
+                        <!-- Group 1 (8 Unique) -->
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/chiguru.2.png" alt="Chiguru Restaurant"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/AVIZ.LOGO.png" alt="Aviz Academy"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/connect thrive.1.png" alt="Connect Thrive"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/LOGO2.png" alt="Anvita"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/aniva.logo.png" alt="Aniva"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/niravana.png" alt="Niravana"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/varmas.png" alt="Varmas"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/Family.png" alt="Family"></div>
+                        </div>
+                        <!-- Duplicate Group 1 -->
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/chiguru.2.png" alt="Chiguru Restaurant"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/AVIZ.LOGO.png" alt="Aviz Academy"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/connect thrive.1.png" alt="Connect Thrive"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/LOGO2.png" alt="Anvita"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/aniva.logo.png" alt="Aniva"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/niravana.png" alt="Niravana"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/varmas.png" alt="Varmas"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/Family.png" alt="Family"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Right to Left (6 cards) -->
+                <div class="clients-track row-2">
+                    <div class="track-content">
+                        <!-- Group 2 (7 Unique) -->
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/Cropzy_4-0100.png" alt="Cropzy"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/fynans-tech-png-(1).png" alt="Fynans"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/client7.webp" alt="Client 7"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/file easy.png" alt="File Easy"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/varcas.png" alt="Varcas"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/design studio.png" alt="Design Studio"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/taberna.png" alt="Taberna"></div>
+                        </div>
+                        <!-- Duplicate Group 2 -->
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/Cropzy_4-0100.png" alt="Cropzy"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/fynans-tech-png-(1).png" alt="Fynans"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/client7.webp" alt="Client 7"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/file easy.png" alt="File Easy"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/varcas.png" alt="Varcas"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/design studio.png" alt="Design Studio"></div>
+                        </div>
+                        <div class="client-card">
+                            <div class="client-logo"><img src="images/taberna.png" alt="Taberna"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+    </div>
+
+    <div class="section-wrapper">
+        <div class="custom-quote-cta">
+            <h3 class="cta-text"><span class="cta-light">Looking for a custom solution?</span> <a href="#contact"
+                    class="cta-link"><span class="text-gradient">Get a Custom Quote &rarr;</span></a></h3>
+        </div>
+    </div>
+
+
+    <div class="section-wrapper">
+        <!-- Contact Section -->
+        <section class="section contact" id="contact">
+            <div class="glass-card contact__card">
+                <div class="contact__content">
+                    <h2 class="section__title">Let's Create<br>Something<br><span class="text-gradient">Real</span></h2>
+                    <p class="section__desc">Ready to transform your digital presence? Drop us a line, and let's build
+                        your story together.</p>
+                </div>
+                <form class="contact__form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Name" class="glass-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" class="glass-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="phone" placeholder="Phone Number" class="glass-input" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Tell us about your vision..." rows="4" class="glass-input"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="navbar__btn full-width primary-glow">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-wrapper">
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <img class="footer__logo footer__logo--light" src="./images/Clipo Logo_Black.webp" alt="Clipo Media"
+                        loading="lazy">
+                    <img class="footer__logo footer__logo--dark" src="./images/Clipo Logo_White.webp" alt="Clipo Media"
+                        loading="lazy">
+                    <p class="footer__tagline">
+                        Crafting visual stories that resonate globally. Your strategic creative partner in the digital
+                        age.
+                    </p>
+                    <div class="social-links" style="display: flex; gap: 12px; margin-top: 24px;">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/clipo_media?igsh=a3BmMHhiajFsN3J2" target="_blank"
+                            class="social-icon" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/clipo.video" target="_blank" class="social-icon"
+                            aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@clipobydigitalwin" target="_blank" class="social-icon"
+                            aria-label="YouTube">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Explore</h4>
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#services">Services</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+
+                    <div class="footer__col">
+                        <h4>Contact</h4>
+                        <a href="tel:+919985585558">+<span class="number-text">91 998 558 5558</span></a>
+                        <a href="mailto:clipobydigitalwin@gmail.com">clipobydigitalwin@gmail.com</a>
+                        <p
+                            style="font-size: 0.95rem; color: color-mix(in srgb, var(--c-content) 70%, transparent); line-height: 1.6; margin: 0; max-width: 250px;">
+                            Flat No: <span class="number-text">102</span>, <span class="number-text">1</span>st Floor,
+                            Sri Ikon Residency, Plot No: <span class="number-text">496</span>, Matrusri, near Miyapur,
+                            Hyderabad, Telangana
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <div class="footer__powered">
+                    <p class="powered-label">Powered by</p>
+                    <a href="https://digitalwin.in/" target="_blank" class="dw-brand-link">
+                        <div class="dw-main-logo">
+                            <span class="dw-digital">DIGITAL</span>
+                            <span class="dw-win">WIN</span>
+                        </div>
+                        <div class="dw-technologies">TECHNOLOGIES</div>
+                    </a>
+                    <p class="dw-tagline">We know what works.</p>
+                </div>
+                <p class="copyright">
+                    © <span class="number-text">2026</span> Clipo Media | Privacy Policy
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    </a>
+
+    <!-- VIDEO MODAL FOR OUR WORK SHOWCASE -->
+    <div id="videoModal" class="video-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div id="modalPlayer" class="modal-player">
+                <!-- Video content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Optimized Script Loading: defer allows parallel download while maintaining order -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="js/script.js"></script>
+    <script defer src="js/script-animations.js"></script>
+
+    <!-- GLASSY WHATSAPP BUTTON -->
+    <a href="https://wa.me/919985585558?text=Hi%20Clipo%20Media%2C%20I'm%20interested%20in%20your%20services"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            0
+        </svg>
+        <span class="whatsapp-text">Chat with us</span>
+    </a>
+</body>
+
+</html>
