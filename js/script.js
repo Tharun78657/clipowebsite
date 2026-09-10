@@ -1618,211 +1618,132 @@
     }
 
     // ==========================================
-    // OUR WORK SHOWCASE - INTERACTIVE FEATURES
+    // OUR WORK SHOWCASE - VIDEO HANDLING & SLIDER
     // ==========================================
-    // ==========================================
-    // PORTFOLIO - DIRECT REDIRECT LOGIC
-    // ==========================================
-    function initPortfolioFeatures() {
-        // Direct click redirection or Modal Opening
-        document.addEventListener('click', (e) => {
-            // Handle .showcase-card (Redirect logic - if still used)
-            const card = e.target.closest('.showcase-card');
-            if (card) {
-                const videoType = card.dataset.type;
-                const videoId = card.dataset.videoId;
-                const videoUrl = card.dataset.videoUrl;
+    function initShowcaseVideos() {
+        const playButtons = document.querySelectorAll('.showcase-play-btn');
+        const videos = document.querySelectorAll('.showcase-video');
+        const showcaseSection = document.querySelector('.ourwork-showcase');
 
-                let targetUrl = '';
-                if (videoType === 'youtube' && videoId) {
-                    targetUrl = `https://www.youtube.com/watch?v=${videoId}`;
-                } else if (videoType === 'vimeo' && videoId) {
-                    targetUrl = `https://vimeo.com/${videoId}`;
-                } else if (videoType === 'native' && videoUrl) {
-                    targetUrl = videoUrl;
+        // Function to stop all showcase videos
+        const stopAllVideos = () => {
+            videos.forEach(v => {
+                v.pause();
+                const wrapper = v.closest('.showcase-device');
+                if (wrapper) {
+                    wrapper.classList.remove('has-played', 'is-playing');
+                    v.removeAttribute('controls');
                 }
+            });
+        };
 
-                if (targetUrl) {
-                    window.open(targetUrl, '_blank');
-                }
-            }
-
-            // Handle .video-card (Modal logic for restored section)
-            const videoCard = e.target.closest('.video-card');
-            // Only trigger if NOT a showcase-card (to avoid double handling if they share classes) 
-            // and NOT inside an anchor tag (which handles its own navigation)
-            if (videoCard && !videoCard.classList.contains('showcase-card') && !videoCard.closest('a')) {
-                const videoId = videoCard.dataset.videoId;
-                const type = videoCard.dataset.type;
-
-                if (type === 'youtube' && videoId) {
-                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                    if (window.openVideoModal) {
-                        window.openVideoModal(embedUrl);
-                    }
-                }
-            }
+        // Fix black screen by forcing first frame load
+        videos.forEach(video => {
+            video.preload = "auto";
+            const loadFrame = () => {
+                if (video.currentTime < 0.1) video.currentTime = 0.1;
+            };
+            if (video.readyState >= 1) loadFrame();
+            else video.addEventListener('loadedmetadata', loadFrame);
         });
 
-        // Initialize scroll animations for grid cards
-        if ('IntersectionObserver' in window) {
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, idx) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, idx * 80);
-                        cardObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        playButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
-            // Animate both showcase-cards and the restored portfolio video-cards
-            document.querySelectorAll('.showcase-card, .portfolio-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
-                cardObserver.observe(card);
-            });
-        }
-    }
+                const wrapper = btn.closest('.showcase-device');
+                const video = wrapper ? wrapper.querySelector('video') : null;
 
-    // Global Initialization
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initPortfolioFeatures);
-    } else {
-        initPortfolioFeatures();
-
-        // ==========================================
-        // SHOWCASE VIDEO HANDLING (New Grid)
-        // ==========================================
-        function initShowcaseVideos() {
-            const playButtons = document.querySelectorAll('.showcase-play-btn');
-            const videos = document.querySelectorAll('.showcase-video');
-            const showcaseSection = document.querySelector('.ourwork-showcase');
-
-            // Function to stop all showcase videos
-            const stopAllVideos = () => {
-                videos.forEach(v => {
-                    v.pause();
-                    // Optional: v.currentTime = 0; // Reset if preferred
-                    const wrapper = v.closest('.showcase-device');
-                    if (wrapper) {
-                        wrapper.classList.remove('has-played', 'is-playing');
-                        v.removeAttribute('controls');
-                    }
-                });
-            };
-
-            // Fix black screen by forcing first frame load
-            videos.forEach(video => {
-                video.preload = "auto";
-                const loadFrame = () => {
-                    if (video.currentTime < 0.1) video.currentTime = 0.1;
-                };
-                if (video.readyState >= 1) loadFrame();
-                else video.addEventListener('loadedmetadata', loadFrame);
-            });
-
-            playButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    const wrapper = btn.closest('.showcase-device');
-                    const video = wrapper.querySelector('video');
-
-                    if (video) {
-                        // Pause others first
-                        videos.forEach(v => {
-                            if (v !== video) {
-                                v.pause();
-                                const w = v.closest('.showcase-device');
-                                if (w) w.classList.remove('has-played', 'is-playing');
-                            }
-                        });
-
-                        video.setAttribute('controls', 'true');
-                        video.play();
-                        wrapper.classList.add('has-played', 'is-playing');
-                    }
-                });
-            });
-
-            // Stop videos when scrolling away
-            if (showcaseSection && 'IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (!entry.isIntersecting) {
-                            stopAllVideos();
+                if (video) {
+                    // Pause others first
+                    videos.forEach(v => {
+                        if (v !== video) {
+                            v.pause();
+                            const w = v.closest('.showcase-device');
+                            if (w) w.classList.remove('has-played', 'is-playing');
                         }
                     });
-                }, { threshold: 0.1 });
-                observer.observe(showcaseSection);
+
+                    video.setAttribute('controls', 'true');
+                    video.play();
+                    wrapper.classList.add('has-played', 'is-playing');
+                }
+            });
+        });
+
+        // Stop videos when scrolling away
+        if (showcaseSection && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        stopAllVideos();
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(showcaseSection);
+        }
+
+        // Expose stopAllVideos for slider use
+        window.stopShowcaseVideos = stopAllVideos;
+    }
+
+    // ==========================================
+    // SHOWCASE MOBILE SLIDER
+    // ==========================================
+    function initShowcaseSlider() {
+        const grid = document.querySelector('.video-showcase-grid');
+        const cards = document.querySelectorAll('.video-showcase-grid .video-card');
+        const prevBtn = document.querySelector('.showcase-nav-btn.prev');
+        const nextBtn = document.querySelector('.showcase-nav-btn.next');
+
+        if (!grid || !cards.length || !prevBtn || !nextBtn) return;
+
+        let currentIndex = 0;
+        const totalCards = cards.length;
+
+        const updateSlider = () => {
+            if (window.innerWidth <= 768) {
+                // Stop videos when switching slides
+                if (window.stopShowcaseVideos) window.stopShowcaseVideos();
+                const offset = currentIndex * -100;
+                grid.style.transform = `translateX(${offset}%)`;
+            } else {
+                grid.style.transform = 'none';
             }
+        };
 
-            // Expose stopAllVideos for slider use
-            window.stopShowcaseVideos = stopAllVideos;
-        }
-
-        // ==========================================
-        // SHOWCASE MOBILE SLIDER
-        // ==========================================
-        function initShowcaseSlider() {
-            const grid = document.querySelector('.video-showcase-grid');
-            const cards = document.querySelectorAll('.video-showcase-grid .video-card');
-            const prevBtn = document.querySelector('.showcase-nav-btn.prev');
-            const nextBtn = document.querySelector('.showcase-nav-btn.next');
-
-            if (!grid || !cards.length || !prevBtn || !nextBtn) return;
-
-            let currentIndex = 0;
-            const totalCards = cards.length;
-
-            const updateSlider = () => {
-                if (window.innerWidth <= 768) {
-                    // Stop videos when switching slides
-                    if (window.stopShowcaseVideos) window.stopShowcaseVideos();
-                    const offset = currentIndex * -100;
-                    grid.style.transform = `translateX(${offset}%)`;
-                } else {
-                    grid.style.transform = 'none';
-                }
-            };
-
-            prevBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalCards - 1;
-                updateSlider();
-            });
-
-            nextBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                currentIndex = (currentIndex < totalCards - 1) ? currentIndex + 1 : 0;
-                updateSlider();
-            });
-
-            // Initialize position
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalCards - 1;
             updateSlider();
+        });
 
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 768) {
-                    currentIndex = 0;
-                }
-                updateSlider();
-            });
-        }
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            currentIndex = (currentIndex < totalCards - 1) ? currentIndex + 1 : 0;
+            updateSlider();
+        });
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                initShowcaseVideos();
-                initShowcaseSlider();
-            });
-        } else {
+        // Initialize position
+        updateSlider();
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                currentIndex = 0;
+            }
+            updateSlider();
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
             initShowcaseVideos();
             initShowcaseSlider();
-        }
+        });
+    } else {
+        initShowcaseVideos();
+        initShowcaseSlider();
     }
 
 })();
