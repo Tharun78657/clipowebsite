@@ -807,28 +807,30 @@ body {
 
     /* Container: Clean Floating Bar - Adjusted height for better prominence on mobile */
     .switcher {
-        height: 64px;
-        /* Increased from 50px for more prominence */
-        width: 95vw;
+        height: 52px;
+        width: calc(100% - 20px);
         max-width: 440px;
-        /* Slightly wider */
         border-radius: 99em;
-        bottom: 32px;
-        /* Pushed up slightly */
-        left: 0;
-        right: 0;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        left: 50%;
+        translate: -50% 0;
+        right: auto;
         margin: 0 auto;
-        padding: 6px;
+        padding: 4px;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+        box-sizing: border-box;
+        z-index: 1000;
 
         background: transparent;
         background-color: rgba(255, 255, 255, 0.2);
-        /* More transparent for Glassy look */
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        /* Subtle container border */
-        justify-content: center;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         gap: 0;
     }
 
@@ -860,13 +862,14 @@ body {
     /* Layout & Text overrides */
     .switcher__text {
         display: block;
-        font-size: 15px;
-        /* Increased from 13px */
+        font-size: 12px;
         font-weight: 600;
         line-height: 1;
         margin-top: 0;
-        letter-spacing: 0.01em;
+        letter-spacing: -0.01em;
         text-align: center;
+        white-space: nowrap;
+        color: var(--c-content);
     }
 
     /* Hide Icons on Mobile */
@@ -876,23 +879,27 @@ body {
 
     .switcher__content {
         flex-direction: row;
-        /* Centered Text */
         justify-content: center;
         align-items: center;
         gap: 0;
+        width: 100%;
+        height: 100%;
     }
 
     .switcher__option {
-        /* Ensure interaction is easy on mobile */
-        opacity: 0.6;
-        padding: 0 12px;
-        /* Add some side padding for text fitting */
-
-        /* Critical: Use auto width for text-fitting bubble */
+        opacity: 0.65;
+        padding: 0 4px;
         width: auto !important;
-        flex: 0 0 auto;
-        /* Don't force equal distribution */
+        flex: 1 1 0 !important;
         min-width: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
     }
 
     /* Active State Enhancement */
@@ -904,7 +911,6 @@ body {
         color: var(--c-switcher-active-text);
         font-weight: 700;
         transform: none;
-        /* Removed scale pop for cleaner text transition */
     }
 }
 
@@ -971,34 +977,16 @@ body {
     }
 }
 
-/* Mobile Positioning (Fluid/Percentage based) */
+/* Mobile Positioning */
 @media (max-width: 1024px) {
-
-    /* Dynamic width from JS, but ensures decent look on load */
     .switcher__bubble {
-        width: 60px;
-        /* Base width before JS takes over */
-    }
-
-    /* Move by own width unit (100% of self) */
-    .switcher:has(input[c-option="1"]:checked) .switcher__bubble {
-        transform: translateX(0%);
-    }
-
-    .switcher:has(input[c-option="2"]:checked) .switcher__bubble {
-        transform: translateX(100%);
-    }
-
-    .switcher:has(input[c-option="3"]:checked) .switcher__bubble {
-        transform: translateX(200%);
-    }
-
-    .switcher:has(input[c-option="4"]:checked) .switcher__bubble {
-        transform: translateX(300%);
-    }
-
-    .switcher:has(input[c-option="5"]:checked) .switcher__bubble {
-        transform: translateX(400%);
+        position: absolute !important;
+        left: 0 !important;
+        top: 4px !important;
+        height: calc(100% - 8px) !important;
+        border-radius: 9999px !important;
+        pointer-events: none;
+        z-index: 1;
     }
 }
 
@@ -1492,18 +1480,23 @@ video.hero__device-image {
         /* Glass Tabbar Styling */
         position: fixed;
         left: 50%;
-        /* Correct centering */
-        top: 90%;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        top: auto;
         transform: translateX(-50%);
 
-        width: calc(100vw - 32px);
-        max-width: 600px;
+        width: calc(100% - 20px);
+        max-width: 440px;
 
-        height: 68px;
-        /* Original Size */
-        padding: 6px;
-        padding-bottom: calc(6px + env(safe-area-inset-bottom));
-        /* ===================================
+        height: 52px;
+        padding: 4px;
+        box-sizing: border-box;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* ===================================
    10. CLIENT ECHOES (SPEECH BUBBLES)
    =================================== */
 
@@ -1616,55 +1609,19 @@ video.hero__device-image {
             }
         }
 
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 0;
-        align-items: center;
-        justify-content: center;
+        .switcher__bubble {
+            left: 0 !important;
+            top: 4px !important;
+            height: calc(100% - 8px) !important;
+            position: absolute !important;
+        }
 
-        background: transparent;
-
-        backdrop-filter: blur(22px) saturate(180%);
-        -webkit-backdrop-filter: blur(22px) saturate(180%);
-
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
-        inset 0 1px 1px rgba(255, 255, 255, 0.2);
-
-        box-sizing: border-box;
-        z-index: 1000;
-
-        transition: height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-        width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .switcher__option {
+            flex: 1 1 0 !important;
+            min-width: 0 !important;
+            padding: 0 4px !important;
+        }
     }
-
-    .switcher__bubble {
-        left: 0 !important;
-        top: 6px !important;
-        width: 0;
-        /* JS will set this */
-        height: calc(100% - 12px) !important;
-        position: absolute;
-    }
-
-    .switcher__option {
-        flex: 1 1 auto !important;
-        /* Allow variable widths */
-        min-width: 0;
-    }
-
-    /* Expand on Touch/Drag */
-    .switcher:active,
-    .switcher:focus-within,
-    .switcher--dragging {
-        height: 72px;
-        /* Expanded Height */
-        width: calc(100vw - 24px);
-        /* Expanded Width */
-    }
-}
 
 
 /* ==========================================
@@ -3163,20 +3120,79 @@ body:has(input[value="dim"]:checked) .pricing-card:hover {
 /* Mobile & Tablet Navigation Layout */
 @media (max-width: 1024px) {
     .switcher {
-        width: 92% !important;
-        max-width: 420px !important;
-        height: 70px !important;
+        width: calc(100% - 20px) !important;
+        max-width: 440px !important;
+        height: 52px !important;
         left: 50% !important;
         translate: -50% 0 !important;
         transform: none !important;
-        bottom: 20px !important;
+        bottom: max(16px, env(safe-area-inset-bottom)) !important;
         top: auto !important;
         padding: 4px !important;
-        border-radius: 100px !important;
-        /* Ensure pill shape */
+        border-radius: 9999px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        z-index: 1000 !important;
+    }
+
+    .switcher__option {
+        flex: 1 1 0 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        padding: 0 4px !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        opacity: 0.65 !important;
+        cursor: pointer !important;
+    }
+
+    .switcher__option:has(input:checked),
+    .switcher__option.active {
+        opacity: 1 !important;
+    }
+
+    .switcher__option:has(input:checked) .switcher__text,
+    .switcher__option.active .switcher__text {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+
+    .switcher__content {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+
+    .switcher__text {
+        display: block !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        color: var(--c-content) !important;
+    }
+
+    .switcher__bubble {
+        left: 0 !important;
+        top: 4px !important;
+        height: calc(100% - 8px) !important;
+        border-radius: 9999px !important;
+        pointer-events: none !important;
+        position: absolute !important;
     }
 }
 
@@ -5385,15 +5401,25 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
     /* Switcher (Navigation) */
     .switcher {
-        height: 44px;
-        bottom: 16px;
-        padding: 3px;
+        height: 48px !important;
+        bottom: max(14px, env(safe-area-inset-bottom)) !important;
+        padding: 3px !important;
+        width: calc(100% - 16px) !important;
+    }
+
+    .switcher__bubble {
+        top: 3px !important;
+        height: calc(100% - 6px) !important;
+    }
+
+    .switcher__option {
+        padding: 0 2px !important;
     }
 
     .switcher__text {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.01em !important;
     }
 
     /* Scroll Indicator */
@@ -5436,11 +5462,25 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
     }
 
     .switcher {
-        --w: calc((100vw - 16px) / 5);
+        height: 46px !important;
+        bottom: max(12px, env(safe-area-inset-bottom)) !important;
+        padding: 3px !important;
+        width: calc(100% - 12px) !important;
+    }
+
+    .switcher__bubble {
+        top: 3px !important;
+        height: calc(100% - 6px) !important;
+    }
+
+    .switcher__option {
+        padding: 0 1px !important;
     }
 
     .switcher__text {
-        font-size: 25px;
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.02em !important;
     }
 }
 

@@ -102,7 +102,8 @@
         const optionRect = targetOption.getBoundingClientRect();
 
         // Dynamic horizontal translation
-        const targetTranslate = optionRect.left - switcherRect.left - (window.innerWidth <= 1024 ? 4 : 4);
+        const offset = window.innerWidth <= 1024 ? 0 : 4;
+        const targetTranslate = optionRect.left - switcherRect.left - offset;
 
         DOM.bubble.style.width = `${optionRect.width}px`;
         DOM.bubble.style.transition = 'transform 0.45s cubic-bezier(0.32, 0.72, 0, 1), width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
@@ -121,9 +122,9 @@
     });
 
     // Initialize bubble position
-    document.addEventListener('DOMContentLoaded', () => {
+    const initBubblePosition = () => {
         const checkedInput = DOM.switcher?.querySelector('input:checked');
-        if (checkedInput && window.innerWidth > 1024) {
+        if (checkedInput) {
             const data = inputMap.get(checkedInput.value);
             if (data && DOM.bubble && DOM.navOptions.length) {
                 const targetOption = DOM.navOptions[data.index];
@@ -133,12 +134,15 @@
 
                     const switcherRect = DOM.switcher.getBoundingClientRect();
                     const optionRect = targetOption.getBoundingClientRect();
+                    const offset = window.innerWidth <= 1024 ? 0 : 4;
                     DOM.bubble.style.width = `${optionRect.width}px`;
-                    DOM.bubble.style.transform = `translateX(${optionRect.left - switcherRect.left - 4}px)`;
+                    DOM.bubble.style.transform = `translateX(${optionRect.left - switcherRect.left - offset}px)`;
                 }
             }
         }
-    });
+    };
+    document.addEventListener('DOMContentLoaded', initBubblePosition);
+    window.addEventListener('load', initBubblePosition);
 
     // ==========================================
     // INTERSECTION OBSERVER (Section tracking)
@@ -212,7 +216,8 @@
             const switcherRect = DOM.switcher.getBoundingClientRect();
             const optionRect = targetOption.getBoundingClientRect();
 
-            const targetTranslate = optionRect.left - switcherRect.left;
+            const offset = window.innerWidth <= 1024 ? 0 : 4;
+            const targetTranslate = optionRect.left - switcherRect.left - offset;
 
             DOM.bubble.style.width = `${optionRect.width}px`;
             DOM.bubble.style.transform = `translateX(${targetTranslate}px)`;
@@ -223,7 +228,8 @@
         if (lastOption) {
             const switcherRect = DOM.switcher.getBoundingClientRect();
             const lastRect = lastOption.getBoundingClientRect();
-            maxTranslate = lastRect.left - switcherRect.left;
+            const offset = window.innerWidth <= 1024 ? 0 : 4;
+            maxTranslate = lastRect.left - switcherRect.left - offset;
         }
     };
 
@@ -265,7 +271,8 @@
         const currentIndex = getCheckedIndex();
         const targetOption = DOM.navOptions[currentIndex];
         const bubbleRect = targetOption.getBoundingClientRect();
-        const bubbleX = bubbleRect.left - rect.left;
+        const offset = window.innerWidth <= 1024 ? 0 : 4;
+        const bubbleX = bubbleRect.left - rect.left - offset;
 
         // Requirement 1 & 2: Only allow dragging if clicking the active bubble
         if (relativeX < bubbleX - 10 || relativeX > bubbleX + bubbleRect.width + 10) return;
@@ -357,7 +364,8 @@
 
         const targetOption = DOM.navOptions[nearestIndex];
         const finalRect = targetOption.getBoundingClientRect();
-        const finalTranslate = finalRect.left - switcherRect.left;
+        const offset = window.innerWidth <= 1024 ? 0 : 4;
+        const finalTranslate = finalRect.left - switcherRect.left - offset;
 
         DOM.navOptions.forEach((opt, idx) => {
             opt.classList.remove('switcher__option--highlight');
