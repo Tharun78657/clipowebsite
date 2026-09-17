@@ -181,6 +181,7 @@
       from {
         transform: rotate(0deg);
       }
+
       to {
         transform: rotate(360deg);
       }
@@ -662,18 +663,18 @@
     }
 
     .pf-modal__content {
-      width: 90vw;
-      max-width: 1100px;
-      max-height: 85vh;
+      width: 96vw;
+      max-width: 1550px;
+      max-height: 94vh;
       aspect-ratio: 16/9;
       position: relative;
     }
 
     .pf-modal__content.portrait {
       aspect-ratio: 9/16;
-      max-height: 88vh;
+      max-height: 94vh;
       width: auto;
-      max-width: 44vw;
+      max-width: 65vw;
     }
 
     .pf-modal__video {
@@ -684,6 +685,15 @@
       display: none;
       object-fit: contain;
       background: #000;
+    }
+
+    /* Remove download button & context menu on video controls */
+    video::-internal-media-controls-download-button {
+      display: none !important;
+    }
+
+    video::-webkit-media-controls-enclosure {
+      overflow: hidden !important;
     }
 
     /* --- Reveal animation --- */
@@ -785,6 +795,7 @@
         font-size: 1.3rem;
         white-space: normal;
       }
+
       .pf-nav {
         padding: 1rem 1.2rem;
       }
@@ -809,9 +820,24 @@
         grid-template-columns: 1fr;
       }
 
+      .pf-modal__content {
+        width: 98vw;
+        max-width: 98vw;
+        max-height: 94vh;
+      }
+
       .pf-modal__content.portrait {
-        max-width: 90vw;
-        max-height: 80vh;
+        width: 95vw;
+        max-width: 95vw;
+        max-height: 94vh;
+        height: auto;
+      }
+
+      .pf-modal__close {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.55rem;
       }
 
       .pf-section-head {
@@ -896,7 +922,8 @@
   <div class="pf-modal" id="pfModal" role="dialog" aria-modal="true" aria-label="Video player">
     <div class="pf-modal__close" id="pfModalClose" role="button" tabindex="0">CLOSE ✕</div>
     <div class="pf-modal__content" id="pfModalContent">
-      <video class="pf-modal__video" id="pfModalVideo" controls></video>
+      <video class="pf-modal__video" id="pfModalVideo" controls controlsList="nodownload" disablePictureInPicture
+        oncontextmenu="return false;"></video>
       <iframe class="pf-modal__iframe" id="pfModalIframe" frameborder="0" allowfullscreen
         style="display:none;width:100%;height:100%;border-radius:10px;"></iframe>
     </div>
@@ -1017,20 +1044,6 @@
           style="transition-delay:.12s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Taberna-1.mp4" type="video/mp4">
-          </video>
-          <div class="pf-play-overlay">
-            <div class="pf-play-btn"><svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg></div>
-            <span class="pf-play-label">Play</span>
-          </div>
-        </div>
-
-        <!-- Card: Clipo Ad 02 -->
-        <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Clipo%20Ad%2002%20--1.mp4', false)" style="transition-delay:.06s">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="images/portfolio/Clipo%20Ad%2002%20--1.mp4" type="video/mp4">
           </video>
           <div class="pf-play-overlay">
             <div class="pf-play-btn"><svg viewBox="0 0 24 24">
