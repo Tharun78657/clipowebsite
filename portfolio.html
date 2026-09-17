@@ -32,7 +32,7 @@
     .pf-hero {
       position: relative;
       text-align: center;
-      padding: 14rem 2rem 6rem;
+      padding: 11rem 2rem 1rem;
       overflow: hidden;
     }
 
@@ -133,24 +133,57 @@
       }
     }
 
-    /* Film strip decoration */
-    .pf-filmstrip {
-      display: flex;
+    /* Explore Banner — Extra Large Image & Scroll Entrance (Right to Left every scroll) */
+    .pf-explore-banner {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      gap: 6px;
-      margin-top: 4rem;
-      opacity: 0;
-      animation: pfFadeUp 1s 0.8s forwards;
+      gap: 2.2rem;
+      margin-top: 1rem;
+      padding: 0;
       position: relative;
       z-index: 1;
+      opacity: 0;
+      transform: translateX(180px);
+      transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .pf-filmstrip__hole {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      border: 1px solid color-mix(in srgb, var(--c-action) 40%, transparent);
-      background: color-mix(in srgb, var(--c-action) 8%, transparent);
+    .pf-explore-banner.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .pf-explore-banner__img {
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: none;
+      background: none;
+      filter: none;
+      animation: pfSpinContinuous 22s linear infinite;
+    }
+
+    .pf-explore-banner__text {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--c-content);
+      white-space: nowrap;
+      background: linear-gradient(135deg, var(--c-content) 30%, color-mix(in srgb, var(--c-action) 90%, #fff) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes pfSpinContinuous {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     /* --- Navigation / Back button --- */
@@ -262,13 +295,14 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 1.5rem;
-      padding: 6rem 0 3rem;
+      padding: 2.5rem 0 2rem;
       border-top: 1px solid color-mix(in srgb, var(--c-light) 8%, transparent);
       margin-bottom: 0;
     }
 
     .pf-section-head:first-of-type {
       border-top: none;
+      padding-top: 1rem;
     }
 
     .pf-section-head__left {
@@ -445,30 +479,37 @@
     }
 
     .pf-play-btn {
-      width: 60px;
-      height: 60px;
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
-      border: 1.5px solid color-mix(in srgb, var(--c-action) 80%, transparent);
-      background: color-mix(in srgb, var(--c-action) 15%, transparent);
-      backdrop-filter: blur(12px);
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: url('images/Clipo.webp') center / cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 0.9rem;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+      position: relative;
+      border: none;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px color-mix(in srgb, var(--c-action) 35%, transparent);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, filter 0.35s ease;
     }
 
     .pf-card:hover .pf-play-btn,
     .pf-featured:hover .pf-play-btn {
-      transform: scale(1.18);
-      background: color-mix(in srgb, var(--c-action) 30%, transparent);
+      transform: scale(1.15);
+      box-shadow: 0 12px 35px color-mix(in srgb, var(--c-action) 60%, transparent);
+      filter: brightness(1.15);
     }
 
     .pf-play-btn svg {
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       fill: var(--c-action);
       margin-left: 3px;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.8));
     }
 
     .pf-play-label {
@@ -480,21 +521,7 @@
 
     /* Card info footer */
     .pf-card__info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 4rem 1.1rem 1.1rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-      z-index: 3;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-
-    .pf-card:hover .pf-card__info {
-      opacity: 1;
-      transform: translateY(0);
+      display: none !important;
     }
 
     .pf-card__title {
@@ -567,6 +594,28 @@
     .pf-podcast-placeholder__sub {
       font-size: 0.78rem;
       color: color-mix(in srgb, var(--c-content) 40%, transparent);
+    }
+
+    /* --- Podcast Embed Container --- */
+    .pf-podcast-embed {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--c-light) 10%, transparent);
+      box-shadow:
+        0 0 60px color-mix(in srgb, var(--c-action) 12%, transparent),
+        inset 0 1px 0 color-mix(in srgb, var(--c-light) 15%, transparent);
+      margin-bottom: 2rem;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+    }
+
+    .pf-podcast-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
 
     /* --- Video Modal --- */
@@ -709,9 +758,33 @@
       .pf-grid-podcast {
         grid-template-columns: 1fr;
       }
+
+      .pf-explore-banner__img {
+        width: 220px;
+        height: 220px;
+      }
+
+      .pf-explore-banner__text {
+        font-size: 1.8rem;
+      }
     }
 
     @media (max-width: 680px) {
+      .pf-explore-banner {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .pf-explore-banner__img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .pf-explore-banner__text {
+        font-size: 1.3rem;
+        white-space: normal;
+      }
       .pf-nav {
         padding: 1rem 1.2rem;
       }
@@ -767,7 +840,7 @@
       .pf-hero__title {
         font-size: clamp(2.2rem, 10vw, 3rem);
       }
-      
+
       .pf-hero__desc {
         font-size: 0.85rem;
       }
@@ -801,7 +874,7 @@
         font-size: 0.65rem;
         padding: 0.4rem 1rem;
       }
-      
+
       .pf-stat__num {
         font-size: 1.6rem;
       }
@@ -824,6 +897,8 @@
     <div class="pf-modal__close" id="pfModalClose" role="button" tabindex="0">CLOSE ✕</div>
     <div class="pf-modal__content" id="pfModalContent">
       <video class="pf-modal__video" id="pfModalVideo" controls></video>
+      <iframe class="pf-modal__iframe" id="pfModalIframe" frameborder="0" allowfullscreen
+        style="display:none;width:100%;height:100%;border-radius:10px;"></iframe>
     </div>
   </div>
 
@@ -869,20 +944,9 @@
         <span class="pf-stat__label">Clients Served</span>
       </div>
     </div>
-    <div class="pf-filmstrip">
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
-      <div class="pf-filmstrip__hole"></div>
+    <div class="pf-explore-banner">
+      <img src="images/Clipo.webp" alt="Clipo" class="pf-explore-banner__img">
+      <span class="pf-explore-banner__text">Explore our Cinematic videos below</span>
     </div>
   </section>
 
@@ -897,13 +961,12 @@
           <p class="pf-section-head__eyebrow">01 — Section</p>
           <h2 class="pf-section-head__title">Cinematic <span>Reels</span></h2>
         </div>
-        <span class="pf-section-head__count">13 Films</span>
+        <span class="pf-section-head__count">16 Films</span>
       </div>
 
       <!-- Featured Video -->
       <div class="pf-featured pf-reveal"
-        onclick="pfOpenVideo('images/portfolio/cinematic%20story%20telling.mp4', false)"
-        title="Play Cinematic Story Telling">
+        onclick="pfOpenVideo('images/portfolio/cinematic%20story%20telling.mp4', false)">
         <span class="pf-featured__badge">★ Featured — Cinematic Showreel</span>
         <div class="pf-play-overlay">
           <div class="pf-play-btn">
@@ -923,7 +986,7 @@
 
         <!-- Card: Anvita -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Anvita%20V03-1.mp4', false)" title="Anvita — Luxury Real Estate Film">
+          onclick="pfOpenVideo('images/portfolio/Anvita%20V03-1.mp4', false)">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Anvita%20V03-1.mp4" type="video/mp4">
           </video>
@@ -933,16 +996,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Anvita — Luxury Real Estate</p>
-            <p class="pf-card__tag">Real Estate Film</p>
-          </div>
         </div>
 
         <!-- Card: Aviz Bengalore -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Aviz%20Bengalore-1.mp4', false)" title="Aviz Bengalore"
-          style="transition-delay:.06s">
+          onclick="pfOpenVideo('images/portfolio/Aviz%20Bengalore-1.mp4', false)" style="transition-delay:.06s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Aviz%20Bengalore-1.mp4" type="video/mp4">
           </video>
@@ -952,15 +1010,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Aviz Bengalore</p>
-            <p class="pf-card__tag">Brand Film</p>
-          </div>
         </div>
 
         <!-- Card: Taberna -->
         <div class="pf-card pf-card--landscape pf-reveal" onclick="pfOpenVideo('images/portfolio/Taberna-1.mp4', false)"
-          title="Taberna" style="transition-delay:.12s">
+          style="transition-delay:.12s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Taberna-1.mp4" type="video/mp4">
           </video>
@@ -970,16 +1024,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Taberna</p>
-            <p class="pf-card__tag">Cinematic Film</p>
-          </div>
         </div>
 
         <!-- Card: Clipo Ad 02 -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Clipo%20Ad%2002%20--1.mp4', false)" title="Clipo Ad 02"
-          style="transition-delay:.06s">
+          onclick="pfOpenVideo('images/portfolio/Clipo%20Ad%2002%20--1.mp4', false)" style="transition-delay:.06s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Clipo%20Ad%2002%20--1.mp4" type="video/mp4">
           </video>
@@ -989,16 +1038,12 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Clipo Ad 02</p>
-            <p class="pf-card__tag">Ad Production</p>
-          </div>
         </div>
 
         <!-- Card: Dashami Salary -->
         <div class="pf-card pf-card--landscape pf-reveal"
           onclick="pfOpenVideo('images/portfolio/Dashami%20%20------%20%20%20Salary%20-1.mp4', false)"
-          title="Dashami — Salary" style="transition-delay:.12s">
+          style="transition-delay:.12s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Dashami%20%20------%20%20%20Salary%20-1.mp4" type="video/mp4">
           </video>
@@ -1008,16 +1053,12 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Dashami — Salary</p>
-            <p class="pf-card__tag">Digital Marketing</p>
-          </div>
         </div>
 
         <!-- Card: Dashami Driver Club -->
         <div class="pf-card pf-card--landscape pf-reveal"
           onclick="pfOpenVideo('images/portfolio/Dashami%20%20Driver%20%20Club%20And%20Kitchen%20-1.mp4', false)"
-          title="Dashami — Driver Club" style="transition-delay:.18s">
+          style="transition-delay:.18s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Dashami%20%20Driver%20%20Club%20And%20Kitchen%20-1.mp4" type="video/mp4">
           </video>
@@ -1027,16 +1068,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Dashami — Driver Club</p>
-            <p class="pf-card__tag">Brand Reel</p>
-          </div>
         </div>
 
         <!-- Card: Dashami Ambients -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Dashami%20Ambients%20%20-1.mp4', false)" title="Dashami — Ambients"
-          style="transition-delay:.06s">
+          onclick="pfOpenVideo('images/portfolio/Dashami%20Ambients%20%20-1.mp4', false)" style="transition-delay:.06s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Dashami%20Ambients%20%20-1.mp4" type="video/mp4">
           </video>
@@ -1046,16 +1082,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Dashami — Ambients</p>
-            <p class="pf-card__tag">Ambient Film</p>
-          </div>
         </div>
 
         <!-- Card: Dashami ANR -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Dashami%20Anr-1.mp4', false)" title="Dashami — ANR"
-          style="transition-delay:.12s">
+          onclick="pfOpenVideo('images/portfolio/Dashami%20Anr-1.mp4', false)" style="transition-delay:.12s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Dashami%20Anr-1.mp4" type="video/mp4">
           </video>
@@ -1065,16 +1096,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Dashami — ANR</p>
-            <p class="pf-card__tag">Brand Film</p>
-          </div>
         </div>
 
         <!-- Card: Dashami Garikapati -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Dashami%20Garikapati%20-1.mp4', false)" title="Dashami — Garikapati"
-          style="transition-delay:.18s">
+          onclick="pfOpenVideo('images/portfolio/Dashami%20Garikapati%20-1.mp4', false)" style="transition-delay:.18s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Dashami%20Garikapati%20-1.mp4" type="video/mp4">
           </video>
@@ -1084,16 +1110,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Dashami — Garikapati</p>
-            <p class="pf-card__tag">Cinematic Reel</p>
-          </div>
         </div>
 
         <!-- Card: Dashami IPL -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Dashami%20Ipl%20Reel%20-1.mp4', false)" title="Dashami — IPL Reel"
-          style="transition-delay:.06s">
+          onclick="pfOpenVideo('images/portfolio/Dashami%20Ipl%20Reel%20-1.mp4', false)" style="transition-delay:.06s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Dashami%20Ipl%20Reel%20-1.mp4" type="video/mp4">
           </video>
@@ -1103,16 +1124,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Dashami — IPL Reel</p>
-            <p class="pf-card__tag">Sports Reel</p>
-          </div>
         </div>
 
         <!-- Card: Dashami Diet -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Dashami-%20Diet%20Reel-1.mp4', false)" title="Dashami — Diet Reel"
-          style="transition-delay:.12s">
+          onclick="pfOpenVideo('images/portfolio/Dashami-%20Diet%20Reel-1.mp4', false)" style="transition-delay:.12s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Dashami-%20Diet%20Reel-1.mp4" type="video/mp4">
           </video>
@@ -1122,16 +1138,11 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Dashami — Diet Reel</p>
-            <p class="pf-card__tag">Lifestyle Reel</p>
-          </div>
         </div>
 
         <!-- Card: Moktail Dashami -->
         <div class="pf-card pf-card--landscape pf-reveal"
-          onclick="pfOpenVideo('images/portfolio/Moktail%20Dashami-1.mp4', false)" title="Moktail Dashami"
-          style="transition-delay:.18s">
+          onclick="pfOpenVideo('images/portfolio/Moktail%20Dashami-1.mp4', false)" style="transition-delay:.18s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Moktail%20Dashami-1.mp4" type="video/mp4">
           </video>
@@ -1141,16 +1152,12 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Moktail Dashami</p>
-            <p class="pf-card__tag">Cinematic Reel</p>
-          </div>
         </div>
 
         <!-- Card: Budget Confidence -->
         <div class="pf-card pf-card--landscape pf-reveal"
           onclick="pfOpenVideo('images/portfolio/Budjet%20Confidence%20Cut%20(2)%20%20Mp4-1(1).mp4', false)"
-          title="Budget Confidence Cut" style="transition-delay:.06s">
+          style="transition-delay:.06s">
           <video autoplay loop muted playsinline preload="metadata">
             <source src="images/portfolio/Budjet%20Confidence%20Cut%20(2)%20%20Mp4-1(1).mp4" type="video/mp4">
           </video>
@@ -1160,158 +1167,193 @@
               </svg></div>
             <span class="pf-play-label">Play</span>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Budget Confidence Cut</p>
-            <p class="pf-card__tag">Brand Film</p>
-          </div>
-        </div>
 
-      </div><!-- /pf-grid-reels -->
-    </div><!-- /pf-section -->
+        </div><!-- /pf-grid-reels -->
+      </div><!-- /pf-section -->
 
-    <div class="pf-divider"></div>
+      <div class="pf-divider"></div>
 
-    <!-- ══════════════════════════════════════
+      <!-- ══════════════════════════════════════
          SECTION 2 — CINEMATIC PHOTO SHOOT
     ══════════════════════════════════════ -->
-    <div class="pf-section">
-      <div class="pf-section-head pf-reveal">
-        <div class="pf-section-head__left">
-          <p class="pf-section-head__eyebrow">02 — Section</p>
-          <h2 class="pf-section-head__title">Cinematic <span>Photo Shoot</span></h2>
+      <div class="pf-section">
+        <div class="pf-section-head pf-reveal">
+          <div class="pf-section-head__left">
+            <p class="pf-section-head__eyebrow">02 — Section</p>
+            <h2 class="pf-section-head__title">Cinematic <span>Photo Shoot</span></h2>
+          </div>
+          <span class="pf-section-head__count">3 Films</span>
         </div>
-        <span class="pf-section-head__count">3 Films</span>
+
+        <div class="pf-grid-photo">
+
+          <!-- Photo 01 — vertical 9:16 -->
+          <div class="pf-card pf-reveal" onclick="pfOpenVideo('images/portfolio/Img%204492%20(1)-1.mp4', true)">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="images/portfolio/Img%204492%20(1)-1.mp4" type="video/mp4">
+            </video>
+            <div class="pf-play-overlay">
+              <div class="pf-play-btn"><svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg></div>
+              <span class="pf-play-label">Play</span>
+            </div>
+          </div>
+
+          <!-- Photo 02 -->
+          <div class="pf-card pf-reveal" onclick="pfOpenVideo('images/portfolio/Img%204493%20(1)-1.mp4', true)"
+            style="transition-delay:.1s">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="images/portfolio/Img%204493%20(1)-1.mp4" type="video/mp4">
+            </video>
+            <div class="pf-play-overlay">
+              <div class="pf-play-btn"><svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg></div>
+              <span class="pf-play-label">Play</span>
+            </div>
+          </div>
+
+          <!-- Photo 03 -->
+          <div class="pf-card pf-reveal" onclick="pfOpenVideo('images/portfolio/Img%204494%20(1)-1.mp4', true)"
+            style="transition-delay:.2s">
+            <video autoplay loop muted playsinline preload="metadata">
+              <source src="images/portfolio/Img%204494%20(1)-1.mp4" type="video/mp4">
+            </video>
+            <div class="pf-play-overlay">
+              <div class="pf-play-btn"><svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg></div>
+              <span class="pf-play-label">Play</span>
+            </div>
+          </div>
+
+        </div><!-- /pf-grid-photo -->
       </div>
 
-      <div class="pf-grid-photo">
+      <div class="pf-divider"></div>
 
-        <!-- Photo 01 — vertical 9:16 -->
-        <div class="pf-card pf-reveal" onclick="pfOpenVideo('images/portfolio/Img%204492%20(1)-1.mp4', true)"
-          title="Cinematic Photoshoot — Film 01">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="images/portfolio/Img%204492%20(1)-1.mp4" type="video/mp4">
-          </video>
-          <div class="pf-play-overlay">
-            <div class="pf-play-btn"><svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg></div>
-            <span class="pf-play-label">Play</span>
+      <!-- ══════════════════════════════════════
+         SECTION 3 — PODCAST
+    ══════════════════════════════════════ -->
+      <div class="pf-section">
+        <div class="pf-section-head pf-reveal">
+          <div class="pf-section-head__left">
+            <p class="pf-section-head__eyebrow">03 — Section</p>
+            <h2 class="pf-section-head__title">Podcast <span>Production</span></h2>
           </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Photoshoot Film — 01</p>
-            <p class="pf-card__tag">Cinematic Photo Shoot</p>
-          </div>
+          <span class="pf-section-head__count">1 Video</span>
         </div>
 
-        <!-- Photo 02 -->
-        <div class="pf-card pf-reveal" onclick="pfOpenVideo('images/portfolio/Img%204493%20(1)-1.mp4', true)"
-          title="Cinematic Photoshoot — Film 02" style="transition-delay:.1s">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="images/portfolio/Img%204493%20(1)-1.mp4" type="video/mp4">
-          </video>
-          <div class="pf-play-overlay">
-            <div class="pf-play-btn"><svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg></div>
-            <span class="pf-play-label">Play</span>
-          </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Photoshoot Film — 02</p>
-            <p class="pf-card__tag">Cinematic Photo Shoot</p>
-          </div>
+        <div class="pf-podcast-embed pf-reveal">
+          <iframe src="https://www.youtube.com/embed/KlgPJ2U2VQA?start=23" title="Clipo Media Podcast Production"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
         </div>
+      </div>
 
-        <!-- Photo 03 -->
-        <div class="pf-card pf-reveal" onclick="pfOpenVideo('images/portfolio/Img%204494%20(1)-1.mp4', true)"
-          title="Cinematic Photoshoot — Film 03" style="transition-delay:.2s">
-          <video autoplay loop muted playsinline preload="metadata">
-            <source src="images/portfolio/Img%204494%20(1)-1.mp4" type="video/mp4">
-          </video>
-          <div class="pf-play-overlay">
-            <div class="pf-play-btn"><svg viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg></div>
-            <span class="pf-play-label">Play</span>
-          </div>
-          <div class="pf-card__info">
-            <p class="pf-card__title">Photoshoot Film — 03</p>
-            <p class="pf-card__tag">Cinematic Photo Shoot</p>
-          </div>
-        </div>
+      <!-- ══════════════ FOOTER ══════════════ -->
+      <footer class="pf-footer">
+        <a href="index.html" style="display:block;line-height:0;">
+          <img src="images/Clipo Logo_White.webp" alt="Clipo Media" style="height:36px;width:auto;object-fit:contain;">
+        </a>
+        <span class="pf-footer__copy">© 2026 Clipo Media — All Rights Reserved</span>
+        <a href="https://wa.me/+919700329901" target="_blank" rel="noopener" class="pf-footer__cta">
+          Let's Work Together →
+        </a>
+      </footer>
 
-      </div><!-- /pf-grid-photo -->
-    </div>
+    </div><!-- /pf-wrapper -->
 
-    <!-- ══════════════ FOOTER ══════════════ -->
-    <footer class="pf-footer">
-      <a href="index.html" style="display:block;line-height:0;">
-        <img src="images/Clipo Logo_White.webp" alt="Clipo Media" style="height:36px;width:auto;object-fit:contain;">
-      </a>
-      <span class="pf-footer__copy">© 2026 Clipo Media — All Rights Reserved</span>
-      <a href="https://wa.me/+919700329901" target="_blank" rel="noopener" class="pf-footer__cta">
-        Let's Work Together →
-      </a>
-    </footer>
+    <script>
+      /* ─── Video Modal ─── */
+      const pfModal = document.getElementById('pfModal');
+      const pfModalContent = document.getElementById('pfModalContent');
+      const pfModalVideo = document.getElementById('pfModalVideo');
+      const pfModalIframe = document.getElementById('pfModalIframe');
+      const pfModalClose = document.getElementById('pfModalClose');
 
-  </div><!-- /pf-wrapper -->
-
-  <script>
-    /* ─── Video Modal ─── */
-    const pfModal = document.getElementById('pfModal');
-    const pfModalContent = document.getElementById('pfModalContent');
-    const pfModalVideo = document.getElementById('pfModalVideo');
-    const pfModalClose = document.getElementById('pfModalClose');
-
-    function pfOpenVideo(src, isPortrait) {
-      pfModalContent.classList.toggle('portrait', !!isPortrait);
-      pfModalVideo.style.display = 'block';
-      pfModalVideo.src = src;
-      pfModalVideo.play().catch(() => { });
-      pfModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function pfCloseModal() {
-      pfModal.classList.remove('active');
-      pfModalVideo.pause();
-      pfModalVideo.src = '';
-      pfModalVideo.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    pfModalClose.addEventListener('click', pfCloseModal);
-    pfModalClose.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') pfCloseModal(); });
-    pfModal.addEventListener('click', e => { if (e.target === pfModal) pfCloseModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && pfModal.classList.contains('active')) pfCloseModal(); });
-
-    /* ─── Scroll Reveal ─── */
-    const pfObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          pfObserver.unobserve(e.target);
+      function pfOpenVideo(src, isPortrait) {
+        pfModalContent.classList.toggle('portrait', !!isPortrait);
+        if (src.includes('instagram.com')) {
+          let embedUrl = src;
+          if (!embedUrl.includes('/embed')) {
+            embedUrl = embedUrl.replace(/\/$/, '') + '/embed/';
+          }
+          pfModalVideo.style.display = 'none';
+          pfModalVideo.src = '';
+          pfModalIframe.style.display = 'block';
+          pfModalIframe.src = embedUrl;
+        } else {
+          pfModalIframe.style.display = 'none';
+          pfModalIframe.src = '';
+          pfModalVideo.style.display = 'block';
+          pfModalVideo.src = src;
+          pfModalVideo.play().catch(() => { });
         }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+        pfModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
 
-    document.querySelectorAll('.pf-reveal').forEach(el => pfObserver.observe(el));
+      function pfCloseModal() {
+        pfModal.classList.remove('active');
+        pfModalVideo.pause();
+        pfModalVideo.src = '';
+        pfModalVideo.style.display = 'none';
+        if (pfModalIframe) {
+          pfModalIframe.src = '';
+          pfModalIframe.style.display = 'none';
+        }
+        document.body.style.overflow = '';
+      }
 
-    /* ─── Stagger child reveals inside grids ─── */
-    document.querySelectorAll('.pf-grid-reels, .pf-grid-photo, .pf-grid-podcast').forEach(grid => {
-      const gridObserver = new IntersectionObserver(entries => {
+      pfModalClose.addEventListener('click', pfCloseModal);
+      pfModalClose.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') pfCloseModal(); });
+      pfModal.addEventListener('click', e => { if (e.target === pfModal) pfCloseModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && pfModal.classList.contains('active')) pfCloseModal(); });
+
+      /* ─── Scroll Reveal ─── */
+      const pfObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            const cards = e.target.querySelectorAll('.pf-card, .pf-podcast-placeholder');
-            cards.forEach((card, i) => {
-              setTimeout(() => card.classList.add('visible'), i * 80);
-            });
-            gridObserver.unobserve(e.target);
+            e.target.classList.add('visible');
+            pfObserver.unobserve(e.target);
           }
         });
-      }, { threshold: 0.05 });
-      gridObserver.observe(grid);
-    });
-  </script>
+      }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.pf-reveal').forEach(el => pfObserver.observe(el));
+
+      /* ─── Scroll Reveal Banner (Triggers right-to-left every time in viewport) ─── */
+      const bannerObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+          } else {
+            e.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      const bannerEl = document.querySelector('.pf-explore-banner');
+      if (bannerEl) bannerObserver.observe(bannerEl);
+
+      /* ─── Stagger child reveals inside grids ─── */
+      document.querySelectorAll('.pf-grid-reels, .pf-grid-photo, .pf-grid-podcast').forEach(grid => {
+        const gridObserver = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              const cards = e.target.querySelectorAll('.pf-card, .pf-podcast-placeholder');
+              cards.forEach((card, i) => {
+                setTimeout(() => card.classList.add('visible'), i * 80);
+              });
+              gridObserver.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.05 });
+        gridObserver.observe(grid);
+      });
+    </script>
 </body>
 
 </html>
