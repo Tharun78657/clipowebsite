@@ -356,6 +356,77 @@
       margin-bottom: 2rem;
     }
 
+    .pf-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+      margin: 0 0 2rem;
+    }
+
+    .pf-photo-grid.expanded .pf-photo-card.is-hidden {
+      display: block;
+    }
+
+    .pf-photo-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      border: 1px solid color-mix(in srgb, var(--c-light) 10%, transparent);
+      border-radius: 16px;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--c-glass) 5%, transparent);
+      padding: 0;
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      aspect-ratio: 4 / 5;
+    }
+
+    .pf-photo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px color-mix(in srgb, var(--c-action) 18%, transparent);
+      border-color: color-mix(in srgb, var(--c-action) 40%, transparent);
+    }
+
+    .pf-photo-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: brightness(0.82) saturate(1.12);
+      transition: filter 0.35s ease;
+    }
+
+    .pf-photo-card:hover img {
+      filter: brightness(0.7) saturate(1.2);
+    }
+
+    .pf-photo-card.is-hidden {
+      display: none;
+    }
+
+    .pf-view-more {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      border: 1px solid color-mix(in srgb, var(--c-action) 38%, transparent);
+      background: color-mix(in srgb, var(--c-action) 10%, transparent);
+      color: var(--c-content);
+      padding: 0.8rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .pf-view-more:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px color-mix(in srgb, var(--c-action) 25%, transparent);
+    }
+
     .pf-grid-podcast {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -667,7 +738,8 @@
       max-width: 65vw;
     }
 
-    .pf-modal__video {
+    .pf-modal__video,
+    .pf-modal__image {
       width: 100%;
       height: 100%;
       border-radius: 10px;
@@ -675,6 +747,11 @@
       display: none;
       object-fit: contain;
       background: #000;
+    }
+
+    .pf-modal__image {
+      padding: 0.5rem;
+      box-sizing: border-box;
     }
 
     /* Remove download button & context menu on video controls */
@@ -909,11 +986,12 @@
   </div>
 
   <!-- ══════════════ MODAL ══════════════ -->
-  <div class="pf-modal" id="pfModal" role="dialog" aria-modal="true" aria-label="Video player">
+  <div class="pf-modal" id="pfModal" role="dialog" aria-modal="true" aria-label="Media viewer">
     <div class="pf-modal__close" id="pfModalClose" role="button" tabindex="0">CLOSE ✕</div>
     <div class="pf-modal__content" id="pfModalContent">
       <video class="pf-modal__video" id="pfModalVideo" controls controlsList="nodownload" disablePictureInPicture
         oncontextmenu="return false;"></video>
+      <img class="pf-modal__image" id="pfModalImage" alt="Expanded portfolio image" style="display:none;">
       <iframe class="pf-modal__iframe" id="pfModalIframe" frameborder="0" allowfullscreen
         style="display:none;width:100%;height:100%;border-radius:10px;"></iframe>
     </div>
@@ -1451,12 +1529,64 @@
       <div class="pf-divider"></div>
 
       <!-- ══════════════════════════════════════
-         SECTION 2 — PODCAST
+         SECTION 2 — CINEMATIC PHOTO SHOOT
     ══════════════════════════════════════ -->
       <div class="pf-section">
         <div class="pf-section-head pf-reveal">
           <div class="pf-section-head__left">
             <p class="pf-section-head__eyebrow">02 — Section</p>
+            <h2 class="pf-section-head__title">Cinematic <span>Photo Shoot</span></h2>
+          </div>
+          <span class="pf-section-head__count">9 Frames</span>
+        </div>
+
+        <div class="pf-photo-grid" id="pfPhotoGrid">
+          <button class="pf-photo-card" type="button" onclick="pfOpenImage('images/DSCF9002.JPG')" aria-label="View image 1">
+            <img src="images/DSCF9002.JPG" alt="Cinematic photo shoot 1">
+          </button>
+          <button class="pf-photo-card" type="button" onclick="pfOpenImage('images/DSCF9022.JPG')" aria-label="View image 2">
+            <img src="images/DSCF9022.JPG" alt="Cinematic photo shoot 2">
+          </button>
+          <button class="pf-photo-card" type="button" onclick="pfOpenImage('images/DSCF9029.JPG')" aria-label="View image 3">
+            <img src="images/DSCF9029.JPG" alt="Cinematic photo shoot 3">
+          </button>
+          <button class="pf-photo-card is-hidden" type="button" onclick="pfOpenImage('images/DSCF9055.JPG')" aria-label="View image 4">
+            <img src="images/DSCF9055.JPG" alt="Cinematic photo shoot 4">
+          </button>
+          <button class="pf-photo-card is-hidden" type="button" onclick="pfOpenImage('images/DSCF9183.JPG')" aria-label="View image 5">
+            <img src="images/DSCF9183.JPG" alt="Cinematic photo shoot 5">
+          </button>
+          <button class="pf-photo-card is-hidden" type="button" onclick="pfOpenImage('images/DSCF9214.JPG')" aria-label="View image 6">
+            <img src="images/DSCF9214.JPG" alt="Cinematic photo shoot 6">
+          </button>
+          <button class="pf-photo-card is-hidden" type="button" onclick="pfOpenImage('images/DSCF9236.JPG')" aria-label="View image 7">
+            <img src="images/DSCF9236.JPG" alt="Cinematic photo shoot 7">
+          </button>
+          <button class="pf-photo-card is-hidden" type="button" onclick="pfOpenImage('images/DSCF9241.JPG')" aria-label="View image 8">
+            <img src="images/DSCF9241.JPG" alt="Cinematic photo shoot 8">
+          </button>
+          <button class="pf-photo-card is-hidden" type="button" onclick="pfOpenImage('images/DSCF9273.JPG')" aria-label="View image 9">
+            <img src="images/DSCF9306.JPG" alt="Cinematic photo shoot 9">
+          </button>
+          <button class="pf-photo-card is-hidden" type="button" onclick="pfOpenImage('images/DSCF9273.JPG')" aria-label="View image 9">
+            <img src="images/DSCF9273.JPG" alt="Cinematic photo shoot 9">
+          </button>
+        </div>
+
+        <button class="pf-view-more" id="pfViewMorePhotos" type="button" aria-expanded="false">
+          View more
+        </button>
+      </div>
+
+      <div class="pf-divider"></div>
+
+      <!-- ══════════════════════════════════════
+         SECTION 3 — PODCAST
+    ══════════════════════════════════════ -->
+      <div class="pf-section">
+        <div class="pf-section-head pf-reveal">
+          <div class="pf-section-head__left">
+            <p class="pf-section-head__eyebrow">03 — Section</p>
             <h2 class="pf-section-head__title">Podcast <span>Production</span></h2>
           </div>
           <span class="pf-section-head__count">1 Video</span>
@@ -1487,11 +1617,14 @@
       const pfModal = document.getElementById('pfModal');
       const pfModalContent = document.getElementById('pfModalContent');
       const pfModalVideo = document.getElementById('pfModalVideo');
+      const pfModalImage = document.getElementById('pfModalImage');
       const pfModalIframe = document.getElementById('pfModalIframe');
       const pfModalClose = document.getElementById('pfModalClose');
 
       function pfOpenVideo(src, isPortrait) {
         pfModalContent.classList.toggle('portrait', !!isPortrait);
+        pfModalImage.style.display = 'none';
+        pfModalImage.src = '';
         if (src.includes('instagram.com')) {
           let embedUrl = src;
           if (!embedUrl.includes('/embed')) {
@@ -1512,11 +1645,26 @@
         document.body.style.overflow = 'hidden';
       }
 
+      function pfOpenImage(src) {
+        pfModalContent.classList.remove('portrait');
+        pfModalVideo.style.display = 'none';
+        pfModalVideo.pause();
+        pfModalVideo.src = '';
+        pfModalIframe.style.display = 'none';
+        pfModalIframe.src = '';
+        pfModalImage.style.display = 'block';
+        pfModalImage.src = src;
+        pfModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
       function pfCloseModal() {
         pfModal.classList.remove('active');
         pfModalVideo.pause();
         pfModalVideo.src = '';
         pfModalVideo.style.display = 'none';
+        pfModalImage.src = '';
+        pfModalImage.style.display = 'none';
         if (pfModalIframe) {
           pfModalIframe.src = '';
           pfModalIframe.style.display = 'none';
@@ -1554,6 +1702,18 @@
 
       const bannerEl = document.querySelector('.pf-explore-banner');
       if (bannerEl) bannerObserver.observe(bannerEl);
+
+      /* ─── Cinematic photo shoot gallery reveal toggle ─── */
+      const pfPhotoGrid = document.getElementById('pfPhotoGrid');
+      const pfViewMorePhotos = document.getElementById('pfViewMorePhotos');
+
+      if (pfViewMorePhotos && pfPhotoGrid) {
+        pfViewMorePhotos.addEventListener('click', () => {
+          const isExpanded = pfPhotoGrid.classList.toggle('expanded');
+          pfViewMorePhotos.textContent = isExpanded ? 'View less' : 'View more';
+          pfViewMorePhotos.setAttribute('aria-expanded', String(isExpanded));
+        });
+      }
 
       /* ─── Stagger child reveals inside grids ─── */
       document.querySelectorAll('.pf-grid-reels, .pf-grid-photo, .pf-grid-podcast').forEach(grid => {
