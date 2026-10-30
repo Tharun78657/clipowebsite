@@ -525,6 +525,22 @@
                 return showGlassyAlert("Please enter a valid Phone Number (must be exactly 10 digits).");
             }
 
+            const whatsappMessage = [
+                'New contact request',
+                `Name: ${name}`,
+                `Email: ${email}`,
+                `Phone: ${phone}`,
+                `Message: ${message}`
+            ].join('\n');
+            const whatsappUrl = `https://wa.me/919985585558?text=${encodeURIComponent(whatsappMessage)}`;
+            const whatsappWindow = window.open(whatsappUrl, '_blank');
+
+            if (whatsappWindow) {
+                whatsappWindow.opener = null;
+            } else {
+                showGlassyAlert('Allow pop-ups to open WhatsApp and send your contact details.');
+            }
+
             const submitBtn = DOM.contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
             submitBtn.innerText = 'Sending...';

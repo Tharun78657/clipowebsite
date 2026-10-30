@@ -2655,48 +2655,11 @@ body:has(input[value="dim"]:checked) .footer__logo--dark {
     transform: scale(1.05);
 }
 
-.dw-main-logo {
-    display: flex;
-    align-items: stretch;
-    /* Match height */
-    border: 2px solid #E60045;
-    /* Digital Win Pink/Red */
-    padding: 4px;
-    background: transparent;
-}
-
-.dw-digital {
-    background-color: #E60045;
-    color: white;
-    font-weight: 800;
-    padding: 6px 12px;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    font-family: "Inter", sans-serif;
-}
-
-.dw-win {
-    color: #E60045;
-    font-weight: 800;
-    padding: 6px 12px;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    font-family: "Inter", sans-serif;
-    display: flex;
-    align-items: center;
-}
-
-.dw-technologies {
-    width: 100%;
-    color: #E60045;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.4em;
-    /* Wide tracking */
-    text-align: center;
-    text-indent: 0.4em;
-    /* Offset for tracking center */
-    font-family: "Inter", sans-serif;
+.dw-logo-image {
+    display: block;
+    width: min(260px, 80vw);
+    height: auto;
+    object-fit: contain;
 }
 
 .dw-tagline {
@@ -5156,16 +5119,6 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
         gap: 20px;
     }
 
-    .dw-digital,
-    .dw-win {
-        font-size: 1.1rem;
-        padding: 4px 10px;
-    }
-
-    .dw-technologies {
-        font-size: 0.7rem;
-    }
-
     /* Pricing Section Header */
     .pricing-header-iphone h3 {
         font-size: 1.5rem;
@@ -5425,17 +5378,6 @@ body:has(input[value="light"]:checked) .footer__logo--dark {
 
     .powered-label {
         font-size: 0.95rem;
-    }
-
-    .dw-digital,
-    .dw-win {
-        font-size: 1rem;
-        padding: 4px 8px;
-    }
-
-    .dw-technologies {
-        font-size: 0.65rem;
-        letter-spacing: 0.25em;
     }
 
     .dw-tagline {
